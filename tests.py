@@ -40,17 +40,13 @@ class TestBooksCollector:
         collector.set_book_rating('Мастерица и Маргарит', 5)
         assert collector.get_book_rating('Мастер и Маргарита') == 1
 
-    def test_set_book_rating_cant_set_rating_less_than_1(self):
+    import pytest
+    @pytest.mark.parametrize('rating', [0, 11])
+    def test_set_book_rating_cant_set_rating_less_and_greater_range(self, rating):
         collector = BooksCollector()
         collector.add_new_book('Робинзон Крузо')
-        collector.set_book_rating('Робинзон Крузо',0)
+        collector.set_book_rating('Робинзон Крузо',rating)
         assert collector.get_book_rating('Робинзон Крузо') == 1
-
-    def test_set_book_rating_cant_set_rating_greater_than_10(self):
-        collector = BooksCollector()
-        collector.add_new_book('Великий Гэтсби')
-        collector.set_book_rating('Великий Гэтсби', 11)
-        assert collector.get_book_rating('Великий Гэтсби') == 1
 
     def test_get_book_rating_absent_book_no_rating(self):
         collector = BooksCollector()
@@ -83,7 +79,6 @@ class TestBooksCollector:
         assert collector.get_list_of_favorites_books() == []
 
     def test_delete_from_favorites(self):
-
         collector = BooksCollector()
         collector.add_new_book('Каштанка')
         collector.add_book_in_favorites('Каштанка')
