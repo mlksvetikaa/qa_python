@@ -51,6 +51,7 @@ class TestBooksCollector:
         collector.add_new_book('Великий Гэтсби')
         collector.set_book_rating('Великий Гэтсби', 11)
         assert collector.get_book_rating('Великий Гэтсби') == 1
+
     def test_get_book_rating_absent_book_no_rating(self):
         collector = BooksCollector()
         rating = collector.get_book_rating('Война и мир')
