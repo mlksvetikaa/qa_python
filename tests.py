@@ -74,12 +74,12 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book('Сумерки')
         collector.add_book_in_favorites('Сумерки')
-        assert collector.favorites == ['Сумерки']
+        assert collector.get_list_of_favorites_books() == ['Сумерки']
 
     def test_add_to_favorites_fails_if_not_in_ratings(self):
         collector = BooksCollector()
         collector.add_book_in_favorites('Мцыри')
-        assert collector.favorites == []
+        assert collector.get_list_of_favorites_books() == []
 
     def test_delete_from_favorites(self):
 
@@ -87,5 +87,5 @@ class TestBooksCollector:
         collector.add_new_book('Каштанка')
         collector.add_book_in_favorites('Каштанка')
         collector.delete_book_from_favorites('Каштанка')
-        assert collector.favorites == []
+        assert collector.get_list_of_favorites_books() == []
 
